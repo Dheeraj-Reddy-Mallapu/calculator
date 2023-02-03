@@ -33,7 +33,7 @@ class _CalculatorState extends State<Calculator> {
               child: Column(
                 children: [
                   TextField(
-                    style: const TextStyle(fontSize: 25),
+                    style: const TextStyle(fontSize: 38),
                     minLines: 2,
                     maxLines: 2,
                     controller: out,
@@ -44,7 +44,7 @@ class _CalculatorState extends State<Calculator> {
                   ),
                   const SizedBox(height: 10),
                   TextField(
-                    style: const TextStyle(fontSize: 22),
+                    style: const TextStyle(fontSize: 28),
                     minLines: 1,
                     maxLines: 2,
                     controller: inp,
@@ -63,7 +63,7 @@ class _CalculatorState extends State<Calculator> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.pink.shade100,
+                      backgroundColor: Colors.orangeAccent,
                       radius: MediaQuery.of(context).size.shortestSide / 12,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
@@ -74,12 +74,13 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '(',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Colors.pink.shade100,
+                      backgroundColor: Colors.orangeAccent,
                       radius: MediaQuery.of(context).size.shortestSide / 12,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
@@ -90,7 +91,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               ')',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -106,7 +108,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '^',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -118,90 +121,12 @@ class _CalculatorState extends State<Calculator> {
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
                             onPressed: () => setState(() {
-                                  input += '√';
+                                  input += 'sqrt';
                                 }),
                             icon: const Text(
                               '√',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.orangeAccent,
-                      radius: MediaQuery.of(context).size.shortestSide / 12,
-                      /*child: SizedBox(
-                          height: MediaQuery.of(context).size.longestSide,
-                          width: MediaQuery.of(context).size.longestSide,
-                          child: IconButton(
-                              onPressed: () => setState(() {}),
-                              icon: const Icon(Icons.backspace))),*/
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CircleAvatar(
-                      radius: MediaQuery.of(context).size.shortestSide / 12,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.longestSide,
-                        width: MediaQuery.of(context).size.longestSide,
-                        child: IconButton(
-                            onPressed: () => setState(() {
-                                  input += '7';
-                                }),
-                            icon: const Text(
-                              '7',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: MediaQuery.of(context).size.shortestSide / 12,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.longestSide,
-                        width: MediaQuery.of(context).size.longestSide,
-                        child: IconButton(
-                            onPressed: () => setState(() {
-                                  input += '8';
-                                }),
-                            icon: const Text(
-                              '8',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: MediaQuery.of(context).size.shortestSide / 12,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.longestSide,
-                        width: MediaQuery.of(context).size.longestSide,
-                        child: IconButton(
-                            onPressed: () => setState(() {
-                                  input += '9';
-                                }),
-                            icon: const Text(
-                              '9',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.amber,
-                      radius: MediaQuery.of(context).size.shortestSide / 12,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.longestSide,
-                        width: MediaQuery.of(context).size.longestSide,
-                        child: IconButton(
-                            onPressed: () => setState(() {
-                                  input += '/';
-                                }),
-                            icon: const Text(
-                              '/',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -237,11 +162,98 @@ class _CalculatorState extends State<Calculator> {
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
                             onPressed: () => setState(() {
+                                  input += '7';
+                                }),
+                            icon: const Text(
+                              '7',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: MediaQuery.of(context).size.shortestSide / 12,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '8';
+                                }),
+                            icon: const Text(
+                              '8',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: MediaQuery.of(context).size.shortestSide / 12,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '9';
+                                }),
+                            icon: const Text(
+                              '9',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.amber,
+                      radius: MediaQuery.of(context).size.shortestSide / 12,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '/';
+                                }),
+                            icon: const Text(
+                              '/',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.orangeAccent,
+                      radius: MediaQuery.of(context).size.shortestSide / 12,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.longestSide,
+                          width: MediaQuery.of(context).size.longestSide,
+                          child: IconButton(
+                              onPressed: () => setState(() {
+                                    input = '';
+                                    answer = '';
+                                  }),
+                              icon: const Icon(Icons.delete))),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      radius: MediaQuery.of(context).size.shortestSide / 12,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
                                   input += '4';
                                 }),
                             icon: const Text(
                               '4',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -256,7 +268,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '5',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -271,7 +284,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '6',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -287,21 +301,26 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               'X',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Colors.orangeAccent,
+                      backgroundColor: Colors.amber,
                       radius: MediaQuery.of(context).size.shortestSide / 12,
                       child: SizedBox(
                           height: MediaQuery.of(context).size.longestSide,
                           width: MediaQuery.of(context).size.longestSide,
                           child: IconButton(
                               onPressed: () => setState(() {
-                                    input = '';
+                                    input += '!';
                                   }),
-                              icon: const Icon(Icons.delete_forever))),
+                              icon: const Text(
+                                '!',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 25),
+                              ))),
                     ),
                   ],
                 ),
@@ -322,7 +341,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '1',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -337,7 +357,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '2',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -352,7 +373,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '3',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -368,19 +390,20 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '-',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
                     CircleAvatar(
-                      backgroundColor: Colors.orangeAccent,
+                      backgroundColor: Colors.amber,
                       radius: MediaQuery.of(context).size.shortestSide / 12,
                       child: SizedBox(
                           height: MediaQuery.of(context).size.longestSide,
                           width: MediaQuery.of(context).size.longestSide,
                           child: IconButton(
                               onPressed: () => setState(() {
-                                    input += '%';
+                                    input += '/100';
                                   }),
                               icon: const Icon(Icons.percent))),
                     ),
@@ -398,11 +421,13 @@ class _CalculatorState extends State<Calculator> {
                         height: MediaQuery.of(context).size.longestSide,
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
-                            onPressed: () =>
-                                const AlertDialog(content: Text('data')),
+                            onPressed: () => setState(() {
+                                  input += '00';
+                                }),
                             icon: const Text(
-                              '',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              '00',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -417,7 +442,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '0',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -432,7 +458,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '.',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
@@ -448,7 +475,8 @@ class _CalculatorState extends State<Calculator> {
                                 }),
                             icon: const Text(
                               '+',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
                             )),
                       ),
                     ),
