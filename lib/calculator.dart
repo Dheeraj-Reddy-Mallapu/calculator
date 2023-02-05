@@ -80,7 +80,7 @@ class _CalculatorState extends State<Calculator> {
                             trailing: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
-                                  _deleteItem(_journals[idx]['que']);
+                                  _deleteItem(_journals[revIdx]['que']);
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Deleted')));
