@@ -68,8 +68,8 @@ class _CalculatorState extends State<Calculator> {
                         return ListTile(
                             onTap: () {
                               setState(() {
-                                input = _journals[idx]['que'];
-                                answer = _journals[idx]['ans'];
+                                input = _journals[revIdx]['que'];
+                                answer = _journals[revIdx]['ans'];
                               });
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
