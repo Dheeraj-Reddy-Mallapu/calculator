@@ -1,6 +1,7 @@
 import 'package:math_expressions/math_expressions.dart';
 import 'package:flutter/material.dart';
 import 'sqlite.dart';
+import 'package:flip_card/flip_card.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -89,122 +90,243 @@ class _CalculatorState extends State<Calculator> {
               icon: const Icon(Icons.history))
         ],
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              TextField(
-                autofocus: true,
-                style: const TextStyle(fontSize: 40),
-                minLines: 2,
-                maxLines: 2,
-                controller: out,
-                readOnly: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              ),
-              const SizedBox(height: 15),
-              TextField(
-                style: const TextStyle(fontSize: 30),
-                minLines: 1,
-                maxLines: 2,
-                controller: inp,
-                readOnly: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30))),
-              ),
-            ],
-          ),
+      body: Column(children: <Widget>[
+        const SizedBox(height: 10),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextField(
+              autofocus: true,
+              style: const TextStyle(fontSize: 40),
+              minLines: 2,
+              maxLines: 2,
+              controller: out,
+              readOnly: true,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              style: const TextStyle(fontSize: 30),
+              minLines: 1,
+              maxLines: 2,
+              controller: inp,
+              readOnly: true,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30))),
+            ),
+          ],
         ),
         const SizedBox(height: 10),
-        Container(
-          color: Theme.of(context).colorScheme.secondaryContainer,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.tertiaryContainer,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
+        Expanded(
+          child: Container(
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FlipCard(
+                  direction: FlipDirection.VERTICAL,
+                  front: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                          label: const Text(''),
                           onPressed: () => setState(() {
                                 input += '(';
                               }),
                           icon: const Text(
-                            '(',
+                            '  (',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.tertiaryContainer,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
+                      ElevatedButton.icon(
+                          label: const Text(''),
                           onPressed: () => setState(() {
                                 input += ')';
                               }),
                           icon: const Text(
-                            ')',
+                            '    )',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
+                      ElevatedButton.icon(
+                          label: const Text(''),
                           onPressed: () => setState(() {
                                 input += '^';
                               }),
                           icon: const Text(
-                            '^',
+                            '   ^',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += '!';
+                              }),
+                          icon: const Text(
+                            '   !',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          )),
+                      ElevatedButton.icon(
+                          label: const Text(''),
                           onPressed: () => setState(() {
                                 input += '√';
                               }),
                           icon: const Text(
-                            '√',
+                            '   √',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
+                                fontWeight: FontWeight.bold, fontSize: 18),
                           )),
-                    ),
+                      const IconButton(
+                          onPressed: (null),
+                          icon: Text(
+                            '⋮',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          )),
+                    ],
                   ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.error,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
+                  back: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += 'log';
+                              }),
+                          icon: const Text(
+                            'log',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += 'cos';
+                              }),
+                          icon: const Text(
+                            'cos',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += 'sin';
+                              }),
+                          icon: const Text(
+                            'sin',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += 'tan';
+                              }),
+                          icon: const Text(
+                            'tan',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      ElevatedButton.icon(
+                          label: const Text(''),
+                          onPressed: () => setState(() {
+                                input += 'nrt';
+                              }),
+                          icon: const Text(
+                            'n√',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      const IconButton(
+                          onPressed: (null),
+                          icon: Text(
+                            '⋮',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          )),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '7';
+                                }),
+                            icon: const Text(
+                              '7',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '8';
+                                }),
+                            icon: const Text(
+                              '8',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '9';
+                                }),
+                            icon: const Text(
+                              '9',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '/';
+                                }),
+                            icon: const Text(
+                              '/',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
@@ -218,394 +340,301 @@ class _CalculatorState extends State<Calculator> {
                           }),
                           icon: const Icon(Icons.backspace),
                           color: Theme.of(context).colorScheme.onError,
-                        )),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '7';
-                              }),
-                          icon: const Text(
-                            '7',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
+                        ),
+                      ),
                     ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '8';
-                              }),
-                          icon: const Text(
-                            '8',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '9';
-                              }),
-                          icon: const Text(
-                            '9',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '/';
-                              }),
-                          icon: const Text(
-                            '/',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.error,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.longestSide,
-                        width: MediaQuery.of(context).size.longestSide,
-                        child: IconButton(
-                          onPressed: () => setState(() {
-                            input = '';
-                            answer = '';
-                          }),
-                          icon: Icon(Icons.delete,
-                              color: Theme.of(context).colorScheme.onError),
-                        )),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '4';
-                              }),
-                          icon: const Text(
-                            '4',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '5';
-                              }),
-                          icon: const Text(
-                            '5',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '6';
-                              }),
-                          icon: const Text(
-                            '6',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += 'x';
-                              }),
-                          icon: const Text(
-                            'X',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
                             onPressed: () => setState(() {
-                                  input += '!';
+                                  input += '4';
                                 }),
                             icon: const Text(
-                              '!',
+                              '4',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
-                            ))),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '1';
-                              }),
-                          icon: const Text(
-                            '1',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
+                            )),
+                      ),
                     ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '2';
-                              }),
-                          icon: const Text(
-                            '2',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '3';
-                              }),
-                          icon: const Text(
-                            '3',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '-';
-                              }),
-                          icon: const Text(
-                            '-',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
                             onPressed: () => setState(() {
-                                  input += '/100';
+                                  input += '5';
                                 }),
-                            icon: const Icon(Icons.percent))),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '00';
-                              }),
-                          icon: const Text(
-                            '00',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
+                            icon: const Text(
+                              '5',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
                     ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '0';
-                              }),
-                          icon: const Text(
-                            '0',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '.';
-                              }),
-                          icon: const Text(
-                            '.',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.inversePrimary,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.longestSide,
-                      width: MediaQuery.of(context).size.longestSide,
-                      child: IconButton(
-                          onPressed: () => setState(() {
-                                input += '+';
-                              }),
-                          icon: const Text(
-                            '+',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25),
-                          )),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Colors.green,
-                    radius: MediaQuery.of(context).size.shortestSide / 12,
-                    child: SizedBox(
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
                         height: MediaQuery.of(context).size.longestSide,
                         width: MediaQuery.of(context).size.longestSide,
                         child: IconButton(
-                            onPressed: () {
-                              if (input.isNotEmpty) {
-                                setState(() {
-                                  Expression exp =
-                                      Parser().parse(finalUserInput);
-                                  double eval = exp.evaluate(
-                                      EvaluationType.REAL, ContextModel());
-                                  answer = eval.toString();
-                                  if (answer.endsWith('.0')) {
-                                    answer =
-                                        answer.substring(0, answer.length - 2);
-                                  }
-                                });
-                                _addItem();
-                              }
-                            },
+                            onPressed: () => setState(() {
+                                  input += '6';
+                                }),
                             icon: const Text(
-                              '=',
+                              '6',
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
-                            ))),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-            ],
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += 'x';
+                                }),
+                            icon: const Text(
+                              'X',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.longestSide,
+                          width: MediaQuery.of(context).size.longestSide,
+                          child: IconButton(
+                            onPressed: () => setState(() {
+                              input = '';
+                              answer = '';
+                            }),
+                            icon: Icon(Icons.delete,
+                                color: Theme.of(context).colorScheme.onError),
+                          )),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '1';
+                                }),
+                            icon: const Text(
+                              '1',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '2';
+                                }),
+                            icon: const Text(
+                              '2',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '3';
+                                }),
+                            icon: const Text(
+                              '3',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '-';
+                                }),
+                            icon: const Text(
+                              '-',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.longestSide,
+                          width: MediaQuery.of(context).size.longestSide,
+                          child: IconButton(
+                              onPressed: () => setState(() {
+                                    input += '/100';
+                                  }),
+                              icon: const Icon(Icons.percent))),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '00';
+                                }),
+                            icon: const Text(
+                              '00',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '0';
+                                }),
+                            icon: const Text(
+                              '0',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onSecondary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '.';
+                                }),
+                            icon: const Text(
+                              '.',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.inversePrimary,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.longestSide,
+                        width: MediaQuery.of(context).size.longestSide,
+                        child: IconButton(
+                            onPressed: () => setState(() {
+                                  input += '+';
+                                }),
+                            icon: const Text(
+                              '+',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            )),
+                      ),
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.green,
+                      radius: MediaQuery.of(context).size.shortestSide / 11,
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.longestSide,
+                          width: MediaQuery.of(context).size.longestSide,
+                          child: IconButton(
+                              onPressed: () {
+                                if (input.isNotEmpty) {
+                                  setState(() {
+                                    Expression exp =
+                                        Parser().parse(finalUserInput);
+                                    double eval = exp.evaluate(
+                                        EvaluationType.REAL, ContextModel());
+                                    answer = eval.toString();
+                                    if (answer.endsWith('.0')) {
+                                      answer = answer.substring(
+                                          0, answer.length - 2);
+                                    }
+                                  });
+                                  _addItem();
+                                }
+                              },
+                              icon: const Text(
+                                '=',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 30),
+                              ))),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         )
       ]),
