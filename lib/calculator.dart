@@ -104,7 +104,7 @@ class _CalculatorState extends State<Calculator> {
               padding: const EdgeInsets.all(3.0),
               child: TextField(
                 autofocus: true,
-                style: const TextStyle(fontSize: 40),
+                style: const TextStyle(fontSize: 38),
                 minLines: 2,
                 maxLines: 2,
                 controller: out,
@@ -115,7 +115,7 @@ class _CalculatorState extends State<Calculator> {
             Padding(
               padding: const EdgeInsets.all(3.0),
               child: TextField(
-                style: const TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 28),
                 minLines: 1,
                 maxLines: 2,
                 controller: inp,
