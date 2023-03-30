@@ -1,7 +1,8 @@
+import 'package:calculator/calculator.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'calculator.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return DynamicColorBuilder(
-        builder: ((ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
-      return MaterialApp(
+    return DynamicColorBuilder(builder: ((ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+      return GetMaterialApp(
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: lightDynamic ?? _defaultLightColorScheme,
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: darkDynamic ?? _defaultDarkColorScheme,
         ),
-        home: const Calculator(),
+        home: const Calc(),
       );
     }));
   }
@@ -32,5 +32,4 @@ class MyApp extends StatelessWidget {
 
 final _defaultLightColorScheme = ColorScheme.fromSeed(seedColor: Colors.green);
 
-final _defaultDarkColorScheme =
-    ColorScheme.fromSeed(seedColor: Colors.green, brightness: Brightness.dark);
+final _defaultDarkColorScheme = ColorScheme.fromSeed(seedColor: Colors.green, brightness: Brightness.dark);

@@ -1,10 +1,17 @@
+import 'package:calculator/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CircleBtn extends StatelessWidget {
-  final Function circleBtnState;
+class CircleBtn extends GetView<Controller> {
+  const CircleBtn({
+    super.key,
+    required this.iconLabel,
+    required this.color,
+    required this.inp,
+  });
   final String iconLabel;
   final Color color;
-  const CircleBtn({super.key, required this.circleBtnState, required this.iconLabel, required this.color});
+  final TextEditingController inp;
 
   @override
   Widget build(BuildContext context) {
@@ -16,28 +23,34 @@ class CircleBtn extends StatelessWidget {
           height: size.longestSide,
           width: size.longestSide,
           child: IconButton(
-            onPressed: () => circleBtnState(iconLabel),
+            onPressed: () {
+              controller.input.value += iconLabel;
+              inp.text = controller.input.value;
+            },
             icon: Text(
               iconLabel,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: size.height / 22),
             ),
           )),
     );
   }
 }
 
-class IconBtn extends StatelessWidget {
-  final Function iconBtnState;
+class IconBtn extends GetView<Controller> {
+  const IconBtn({super.key, required this.iconLabel, required this.inp});
   final String iconLabel;
-  const IconBtn({super.key, required this.iconBtnState, required this.iconLabel});
+  final TextEditingController inp;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () => iconBtnState(iconLabel),
+      onPressed: () {
+        controller.input.value += iconLabel;
+        inp.text = controller.input.value;
+      },
       icon: Text(
         iconLabel,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        style: const TextStyle(fontSize: 18),
       ),
     );
   }
